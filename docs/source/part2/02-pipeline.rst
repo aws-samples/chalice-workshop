@@ -262,3 +262,162 @@ Verification
     {
         "pipeline": "route"
     }
+
+
+Extract the buildspec to a file
+-------------------------------
+
+The instructions for how CodeBuild should package our app
+lives in the ``release/pipeline.json`` CloudFormation template.
+CodeBuild also supports loading the build instructions from
+a ``buildspec.yml`` file at the top level directory of your app.
+In this step we're going to extract out the build spec from
+the inline definition of the ``release/pipeline.json`` into a
+``buildspec.yml`` file.  This will allow us to modify how CodeBuild
+should build our app without having to redeploy our pipeline stack.
+
+Instructions
+~~~~~~~~~~~~
+
+1. Remove the ``BuildSpec`` key from your ``release/pipeline.json``
+   file.  Your existing template has this section::
+
+    "Resources": {
+      "AppPackageBuild": {
+        "Type": "AWS::CodeBuild::Project",
+          "Source": {
+            "BuildSpec": " ... long string here ...",
+            "Type": "CODEPIPELINE"
+          }
+        }
+    ...
+
+   And after removing the ``BuildSpec`` key it should look like this::
+
+    "Resources": {
+      "AppPackageBuild": {
+        "Type": "AWS::CodeBuild::Project",
+          "Source": {
+            "Type": "CODEPIPELINE"
+          }
+        }
+    ...
+
+2. Redeploying your pipeline stack using the AWS CLI::
+
+    $ aws cloudformation deploy --stack-name chalice-pipeline-stack \
+        --template-file release/pipeline.json \
+        --capabilities CAPABILITY_IAM
+
+3. At the top level directory of your sample app, create a new file
+   named ``buildspec.yml`` with these contents::
+
+    version: 0.1
+    phases:
+      install:
+        commands:
+          - sudo pip install --upgrade awscli
+          - aws --version
+          - sudo pip install chalice
+          - sudo pip install -r requirements.txt
+          - chalice package /tmp/packaged
+          - aws cloudformation package --template-file /tmp/packaged/sam.json --s3-bucket ${APP_S3_BUCKET} --output-template-file transformed.yaml
+    artifacts:
+      type: zip
+      files:
+        - transformed.yaml
+
+4. Commit the ``buildspec.yml`` file and push your changes to CodeCommit::
+
+    $ git add buildspec.yml
+    $ git commit -m "Adding buildspec.yml"
+    $ git push codecommit master
+
+Verification
+~~~~~~~~~~~~
+
+1. Go to the CodePipeline page in the console.
+2. Wait for the pipeline to deploy your latest changes. Keep in
+   mind that there should be no functional changes, we just want
+   to verify that CodeBuild was able to load the ``buildspec.yml`` file.
+
+
+Run unit tests
+--------------
+
+Now we're going to modify our ``buildspec.yml`` file to run our unit
+tests.  If the tests fail our application won't deploy to our Beta stage.
+
+
+Instructions
+~~~~~~~~~~~~
+
+1. Create a new ``build.sh`` script with these contents::
+
+    #!/bin/bash
+    pip install --upgrade awscli
+    aws --version
+    pip install virtualenv
+    virtualenv /tmp/venv
+    . /tmp/venv/bin/activate
+    pip install -r requirements.txt
+    pip install -r requirements-test.txt
+    pip install chalice
+    export PYTHONPATH=.
+    py.test tests/ || exit 1
+    chalice package /tmp/packaged
+    aws cloudformation package --template-file /tmp/packaged/sam.json --s3-bucket "${APP_S3_BUCKET}" --output-template-file transformed.yaml
+
+2. Make the script executable::
+
+    $ chmod +x ./build.sh
+
+3. Update your ``buildspec.yml`` to call this build script::
+
+    version: 0.1
+    phases:
+      install:
+        commands:
+          - sudo -E ./build.sh
+    artifacts:
+      type: zip
+      files:
+        - transformed.yaml
+
+4. Commit your changes and push them to codecommit::
+
+    $ git add build.sh buildspec.yml
+    $ git commit -m "Run unit tests"
+
+Verification
+~~~~~~~~~~~~
+
+1. Refresh your pipeline in the AWS console.
+2. Verify the pipeline successfully completes.
+
+Add a failing test
+------------------
+
+Now we'll add a failing unit test and verify that our
+application does not deploy.
+
+
+Instructions
+~~~~~~~~~~~~
+
+1. Add a failing test to the end of the ``tests/test_db.py`` file::
+
+    def test_fail():
+        assert 0 == 1
+
+2. Commit and push your changes::
+
+    $ git add tests/test_db.py
+    $ git commit -m "Add failing test"
+    $ git push codecommit master
+
+Verification
+~~~~~~~~~~~~
+
+1. Refresh your pipeline in the AWS console.
+2. Verify that the CodeBuild stage fails.
