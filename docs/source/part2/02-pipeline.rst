@@ -71,10 +71,14 @@ Instructions
 
     $ git remote add codecommit https://git-codecommit.us-west-2.amazonaws.com/v1/repos/mytodo
 
-5. Configure the CodeCommit credential helper::
+5. Configure the CodeCommit credential helper.  Append these lines to the end
+   of your ``.git/config`` file::
 
-    $ git config credential.helper '!aws codecommit credential-helper $@'
-    $ git config credential.UseHttpPath true
+    [credential]
+        helper =
+        helper = !aws codecommit credential-helper $@
+        UseHttpPath = true
+
 
 Verification
 ~~~~~~~~~~~~
@@ -85,7 +89,16 @@ Verification
     codecommit	https://git-codecommit.us-west-2.amazonaws.com/v1/repos/mytodo (fetch)
     codecommit	https://git-codecommit.us-west-2.amazonaws.com/v1/repos/mytodo (push)
 
-2. Verify you can fetch from the ``codecommit`` remote::
+2. Verify the credential helper is installed correctly.  Mac users may see an
+   ``osxkeychain`` entry as the first line of output.  This is expected, you
+   just need to verify the last two lines match the output below::
+
+    $ git config -l | grep helper
+    credential.helper=osxkeychain
+    credential.helper=
+    credential.helper=!aws codecommit credential-helper $@
+
+3. Verify you can fetch from the ``codecommit`` remote::
 
     $ git fetch codecommit
     $ echo $?
