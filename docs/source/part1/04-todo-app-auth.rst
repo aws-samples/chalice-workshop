@@ -206,6 +206,12 @@ Instructions
    :linenos:
    :lines: 14-21
 
+2. Notice the above code snippit uses the ``auth`` file that we copied into our
+   chalicelib directory at the beginning of this step. Add the following
+   import statement to the top of ``app.py`` so we can use it::
+
+    from chalicelib import auth
+
 
 Verification
 ~~~~~~~~~~~~
