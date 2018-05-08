@@ -24,7 +24,7 @@ Building the Docs
 
 Install requirements::
 
-    $ pip install requirements.txt
+    $ pip install -r requirements.txt
 
 
 Build html docs::
