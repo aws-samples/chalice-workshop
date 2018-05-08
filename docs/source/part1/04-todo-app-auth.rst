@@ -25,7 +25,7 @@ Instructions
 
 1) Add ``PyJWT`` to your ``requirements.txt`` file::
 
-       $ echo PyJWT==1.5.3 >> requirements.txt
+       $ echo PyJWT==1.6.1 >> requirements.txt
 
 
 2) Make sure it is now installed in your virtualenv::
@@ -148,7 +148,7 @@ Instructions
 
     $ python users.py -c
     Username: user
-    Password: password
+    Password:
 
 
 Verification
@@ -166,8 +166,16 @@ password with the ``users.py`` script::
 
     $ python users.py -t
     Username: user
-    Password: password
+    Password:
     Password verified.
+
+You can also test an incorrect password.  You should see this output::
+
+    $ python users.py -t
+    Username: user
+    Password:
+    Password verification failed.
+
 
 Create ``get_users_db`` function
 --------------------------------
@@ -178,8 +186,20 @@ for loading it.
 Instructions
 ~~~~~~~~~~~~
 
-1. Create a function for fetching our current database table for users. Similar to the
-   function that gets the app table.
+1. Add a new variable ``_USER_DB`` in your ``app.py`` file with a value of None::
+
+
+.. code-block:: python
+
+    app = Chalice(app_name='mytodo')
+    app.debug = True
+    _DB = None
+    # This is the new value you're adding.
+    _USER_DB = None
+
+
+2. Create a function for fetching our current database table for users. Similar to the
+   function that gets the app table.  Add this function to your ``app.py`` file:
 
 
 .. literalinclude:: ../../../code/final/app.py
