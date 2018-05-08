@@ -131,7 +131,7 @@ Verification
 The best way to verify the pipeline is working as expected is to view
 the pipeline in the console:
 
-1. Log in to the AWS Console at https://console.aws.amazon.com/
+1. Log in to the AWS Console at https://console.aws.amazon.com/console/home
 
 2. Go to the CodePipeline page.
 
