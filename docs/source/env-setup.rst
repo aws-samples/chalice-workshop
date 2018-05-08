@@ -155,7 +155,7 @@ check this is by checking that you have either a ``~/.aws/credentials`` or
 ``~/.aws/config`` file on your machine.
 
 First if you do not have AWS account, create one on the
-`sign up page <https://portal.aws.amazon.com/billing/signup#/start>`__.
+`sign up page <https://portal.aws.amazon.com/billing/signup>`__.
 
 To actually set up AWS credentials on your development environment, use the
 AWS CLI. To check if you have the AWS CLI installed, run::
@@ -168,7 +168,7 @@ If it prints out a version such as ``aws-cli/1.11.126 Python/2.7.10 Darwin/15.6.
 developement environment.
 
 If you do not have the AWS CLI installed, you can install it by following the
-instructions in the `user guide <http://docs.aws.amazon.com/cli/latest/userguide/installing.html>`__. Assuming ``pip`` is installed on your development
+instructions in the `user guide <https://docs.aws.amazon.com/cli/latest/userguide/installing.html>`__. Assuming ``pip`` is installed on your development
 environment, the AWS CLI can be installed by running::
 
      $ pip install awscli
@@ -187,7 +187,7 @@ development environment for AWS credentials via its prompts::
 For the ``aws configure`` command you will only need to provide an AWS Access
 Key ID, AWS Secret Access Key, and AWS region. To get an AWS Access Key and
 Secret Access Key, follow the
-`instructions <http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html>`__ for creating these keys. For the AWS region, it is recommend to
+`instructions <https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html>`__ for creating these keys. For the AWS region, it is recommend to
 set this to ``us-west-2``, but any region may be used.
 
 Finally to check that everything is correctly set up, run the following AWS
