@@ -38,14 +38,7 @@ configure chalice to pass in the table name to our application.
     $ pip freeze | grep boto3 >> requirements.txt
 
 3. Now that boto3 is installed, we can create the DynamoDB table
-   that we'll use to store our Todo items.  The
-   ``chalice-workshop/code/part1/03-add-dynamodb/createtable.py`` script is used to create our
-   table for us.  If you haven't done so already, copy this script into your
-   application's root directory::
-
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/createtable.py createtable.py
-
-4. Run the ``createtable.py`` script with the ``--table-type app`` option.
+   Run the ``createtable.py`` script with the ``--table-type app`` option.
    This will take a few seconds to run. ::
 
     $ python createtable.py --table-type app
