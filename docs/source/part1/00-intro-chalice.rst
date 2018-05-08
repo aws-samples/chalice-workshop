@@ -51,7 +51,7 @@ To check that ``chalice`` was installed, run::
 
 
 This should print out the version of ``chalice`` that is installed in your
-virutalenv.
+virtualenv.
 
 Also, ensure that Python 2.7 is being used as the Python interpreter for your
 virtualenv::
@@ -106,13 +106,14 @@ Instructions
 
 2) Run ``chalice deploy`` to deploy your Chalice application::
 
-       $ chalice deploy
-       Creating role: workshop-intro-dev
-       Creating deployment package.
-       Creating lambda function: workshop-intro-dev
-       Initiating first time deployment.
-       Deploying to API Gateway stage: api
-       https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
+    $ chalice deploy
+    Creating deployment package.
+    Creating IAM role: workshop-intro-dev
+    Creating lambda function: workshop-intro-dev
+    Creating Rest API
+    Resources deployed:
+      - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:workshop-intro-dev
+      - Rest API URL: https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
 
 
 Verification
@@ -200,12 +201,13 @@ Instructions
 3) Deploy the updated application using ``chalice deploy``::
 
         $ chalice deploy
-        Regen deployment package.
-        Updating IAM policy for role: workshop-intro-dev
+        Creating deployment package.
+        Updating policy for IAM role: workshop-intro-dev
         Updating lambda function: workshop-intro-dev
-        API Gateway rest API already found: 1y2mueb824
-        Deploying to API Gateway stage: api
-        https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
+        Updating rest API
+        Resources deployed:
+          - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:workshop-intro-dev
+          - Rest API URL: https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
 
 
 Validation
@@ -274,12 +276,13 @@ Instructions
 2) Deploy the updated application using ``chalice deploy``::
 
         $ chalice deploy
-        Regen deployment package.
-        Updating IAM policy for role: workshop-intro-dev
+        Creating deployment package.
+        Updating policy for IAM role: workshop-intro-dev
         Updating lambda function: workshop-intro-dev
-        API Gateway rest API already found: 1y2mueb824
-        Deploying to API Gateway stage: api
-        https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
+        Updating rest API
+        Resources deployed:
+          - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:workshop-intro-dev
+          - Rest API URL: https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
 
 
 Verification
@@ -356,12 +359,13 @@ Instructions
 2) Deploy the updated application using ``chalice deploy``::
 
         $ chalice deploy
-        Regen deployment package.
-        Updating IAM policy for role: workshop-intro-dev
+        Creating deployment package.
+        Updating policy for IAM role: workshop-intro-dev
         Updating lambda function: workshop-intro-dev
-        API Gateway rest API already found: 1y2mueb824
-        Deploying to API Gateway stage: api
-        https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
+        Updating rest API
+        Resources deployed:
+          - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:workshop-intro-dev
+          - Rest API URL: https://1y2mueb824.execute-api.us-west-2.amazonaws.com/api/
 
 
 Verification
@@ -406,12 +410,9 @@ Instructions
    application::
 
         $ chalice delete
-        Deleting rest API 1y2mueb824
-        Deleting lambda function: workshop-intro-dev
-        Deleting cloud watch events
-        Delete the role workshop-intro-dev? [y/N]: y
-        Deleting role name workshop-intro-dev
-
+        Deleting Rest API: 1y2mueb824
+        Deleting function: arn:aws:lambda:us-west-2:12345:function:workshop-intro-dev
+        Deleting IAM role: workshop-intro-dev
 
    If you are prompted on whether to delete a resource when deleting the
    application, go ahead and confirm by entering ``y``.
