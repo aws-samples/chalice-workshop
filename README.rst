@@ -2,7 +2,9 @@
 AWS Chalice Workshop
 ====================
 
-This repository contains code for the AWS Chalice workshop
+This repository contains code for the AWS Chalice workshop.
+You can read the rendered content on ReadTheDocs at:
+http://chalice-workshop.readthedocs.io/en/latest/
 
 
 Repo Layout
