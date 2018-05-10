@@ -186,7 +186,7 @@ for loading it.
 Instructions
 ~~~~~~~~~~~~
 
-1. Add a new variable ``_USER_DB`` in your ``app.py`` file with a value of None::
+1. Add a new variable ``_USER_DB`` in your ``app.py`` file with a value of None:
 
 
 .. code-block:: python
@@ -281,6 +281,13 @@ Instructions
 .. literalinclude:: ../../../code/final/app.py
    :linenos:
    :lines: 56-57
+
+
+Also make sure to import the ``AuthResponse`` class at the top of the ``app.py`` file:
+
+.. code-block:: python
+
+    from chalice import AuthResponse
 
 
 Verification
