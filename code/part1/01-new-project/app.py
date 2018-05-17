@@ -22,7 +22,7 @@ class InMemoryTodoDB(object):
         return all_items
 
     def list_items(self, username=DEFAULT_USERNAME):
-        return self._state.get(username, {}).values()
+        return list(self._state.get(username, {}).values())
 
     def add_item(self, description, metadata=None, username=DEFAULT_USERNAME):
         if username not in self._state:
