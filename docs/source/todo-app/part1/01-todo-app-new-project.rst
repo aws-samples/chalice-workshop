@@ -101,7 +101,7 @@ Instructions
 
 2. Copy the over the ``app.py`` file to the ``mytodo`` Chalice application::
 
-      $ cp ../chalice-workshop/code/part1/01-new-project/app.py mytodo/app.py
+      $ cp ../chalice-workshop/code/todo-app/part1/01-new-project/app.py mytodo/app.py
 
 
 Verification
@@ -162,7 +162,7 @@ Instructions
 
 .. The :emphasize-lines: option is relative to :lines:.
 
-.. literalinclude:: ../../../code/part1/02-add-chalicelib/app.py
+.. literalinclude:: ../../../../code/todo-app/part1/02-add-chalicelib/app.py
    :linenos:
    :lines: 69-75
 
@@ -222,7 +222,7 @@ Instructions
    database using the ``uid`` function parameter.
 
 
-  .. literalinclude:: ../../../code/part1/02-add-chalicelib/app.py
+  .. literalinclude:: ../../../../code/todo-app/part1/02-add-chalicelib/app.py
        :linenos:
        :lines: 78-80
 
@@ -279,7 +279,7 @@ Instructions
 3. In the ``delete_todo()`` function delete the Todo from the database using
    the ``uid`` function parameter.
 
-.. literalinclude:: ../../../code/part1/02-add-chalicelib/app.py
+.. literalinclude:: ../../../../code/todo-app/part1/02-add-chalicelib/app.py
    :linenos:
    :lines: 83-85
 
@@ -361,7 +361,7 @@ Instructions
    the Todo (which includes its description, metadata, and state) in the
    database for the ``uid`` provided.
 
-.. literalinclude:: ../../../code/part1/02-add-chalicelib/app.py
+.. literalinclude:: ../../../../code/todo-app/part1/02-add-chalicelib/app.py
    :linenos:
    :lines: 88-95
 
@@ -433,6 +433,6 @@ Final Code
 
 When you are done your final code should look like this:
 
-.. literalinclude:: ../../../code/part1/02-add-chalicelib/app.py
+.. literalinclude:: ../../../../code/todo-app/part1/02-add-chalicelib/app.py
    :linenos:
    :lines: 1-95

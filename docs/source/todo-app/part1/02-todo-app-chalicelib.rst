@@ -187,7 +187,7 @@ Final Code
 
 When you are finished your ``app.py`` file should look like:
 
-.. literalinclude::  ../../../code/part1/03-add-dynamodb/app.py
+.. literalinclude::  ../../../../code/todo-app/part1/03-add-dynamodb/app.py
   :linenos:
   :lines: 1-47
 

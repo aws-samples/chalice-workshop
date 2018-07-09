@@ -9,15 +9,15 @@ Amazon DynamoDB table.
 Initial Setup
 -------------
 
-The starting code for this step is in the ``chalice-workshop/code/part1/03-add-dynamodb``
+The starting code for this step is in the ``chalice-workshop/code/todo-app/part1/03-add-dynamodb``
 file.  If necessary, you can copy over those files as a starting point
 for this step::
 
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/app.py app.py
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/createtable.py createtable.py
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/chalicelib/db.py chalicelib/db.py
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/.chalice/policy-dev.json .chalice/policy-dev.json
-    $ cp ../chalice-workshop/code/part1/03-add-dynamodb/.chalice/config.json .chalice/config.json
+    $ cp ../chalice-workshop/code/todo-app/part1/03-add-dynamodb/app.py app.py
+    $ cp ../chalice-workshop/code/todo-app/part1/03-add-dynamodb/createtable.py createtable.py
+    $ cp ../chalice-workshop/code/todo-app/part1/03-add-dynamodb/chalicelib/db.py chalicelib/db.py
+    $ cp ../chalice-workshop/code/todo-app/part1/03-add-dynamodb/.chalice/policy-dev.json .chalice/policy-dev.json
+    $ cp ../chalice-workshop/code/todo-app/part1/03-add-dynamodb/.chalice/config.json .chalice/config.json
 
 
 Create a DynamoDB table
@@ -102,7 +102,7 @@ chalice app correctly, we can update to use a new ``DynamoDBTodo``
 backend instead of the ``InMemoryTodoDB``.
 
 The ``chalicelib/db.py`` file you copied from
-``code/part1/03-add-dynamodb/chalicelib/db.py`` has a new ``DynamoDBTodo``
+``code/todo-app/part1/03-add-dynamodb/chalicelib/db.py`` has a new ``DynamoDBTodo``
 class.  This has the same interface as ``InMemoryTodoDB`` except that is uses
 DynamoDB as the backend.  We're going to update our ``app.py`` to use this new
 class.
