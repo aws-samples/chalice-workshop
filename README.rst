@@ -10,16 +10,12 @@ http://chalice-workshop.readthedocs.io/en/latest/
 Repo Layout
 ===========
 
-* ``docs/`` - The writeup for the workshop.  Includes the step-by-step guide
-  for each part of the workshop.  This is a sphinx project and can be used to
+* ``docs/`` - The step-by-step documentation for completing each tutorial
+  in the workshop. This is a sphinx project and can be used to
   generate both html as well as a pdf of the guide.
-* ``code/`` - This is broken down into two sections.  The first section is
-  creating the sample app.  The second second seciton is for deploying this
-  application using AWS CodePipeline.
-* ``slides/`` - This is the slide deck used to run the workshop.  It's broken
-  down into two slide decks, one for each phase.  The main (combined) slide
-  deck is ``ChaliceDay.key``.
-
+* ``code/`` - The code to use for the workshop. Each tutorial will have
+  a ``final/`` directory reflecting the end code for application once the
+  tutorial is complete.
 
 Building the Docs
 =================
