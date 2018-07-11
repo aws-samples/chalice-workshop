@@ -188,7 +188,6 @@ Instructions
 
 1. Add a new variable ``_USER_DB`` in your ``app.py`` file with a value of None:
 
-
 .. code-block:: python
 
     app = Chalice(app_name='mytodo')
