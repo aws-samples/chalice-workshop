@@ -59,16 +59,16 @@ managing a user table.
 Instructions
 ~~~~~~~~~~~~
 
-1) Copy in the ``chalice-workshop/code/part1/04-add-auth/chalicelib/auth.py``
+1) Copy in the ``chalice-workshop/code/todo-app/part1/04-add-auth/chalicelib/auth.py``
 file::
 
-       $ cp ../chalice-workshop/code/part1/04-add-auth/chalicelib/auth.py chalicelib/auth.py
+       $ cp ../chalice-workshop/code/todo-app/part1/04-add-auth/chalicelib/auth.py chalicelib/auth.py
 
 
-2) Copy over the ``chalice-workshop/code/part1/04-add-auth/users.py`` script for
+2) Copy over the ``chalice-workshop/code/todo-app/part1/04-add-auth/users.py`` script for
 creating users::
 
-       $ cp ../chalice-workshop/code/part1/04-add-auth/users.py users.py
+       $ cp ../chalice-workshop/code/todo-app/part1/04-add-auth/users.py users.py
 
 
 
@@ -202,7 +202,7 @@ Instructions
    function that gets the app table.  Add this function to your ``app.py`` file:
 
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 31-36
 
@@ -222,7 +222,7 @@ Instructions
    function in the ``auth`` code you copied in earlier which will trade those for a
    JWT token.
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 14-21
 
@@ -274,11 +274,11 @@ Instructions
 
 2. Once we have defined the authorizer, we will attach it to the ``get_todos`` route.
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 24-28
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 56-57
 
@@ -349,19 +349,19 @@ Instructions
 4. Attach the ``jwt_auth`` authorizer to the ``update_todo`` route.
 
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 62-63
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 73-74
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 79-80
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 85-86
 
@@ -501,14 +501,14 @@ Instructions
    to convert the information we have in our ``current_request`` into a
    username.
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 52-53
 
 2. Now we need to update each function that interacts with our database to
    calculate the ``username`` and pass it to the ``xxx_item`` method.
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 56-94
    :emphasize-lines: 3,4,10,12,20,21,26,27,33,39
@@ -633,6 +633,6 @@ Final Code
 
 When you are finished your ``app.py`` file should look like:
 
-.. literalinclude:: ../../../code/final/app.py
+.. literalinclude:: ../../../../code/todo-app/final/app.py
    :linenos:
    :lines: 1-94
