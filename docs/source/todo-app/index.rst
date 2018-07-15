@@ -9,6 +9,5 @@ Todo Application
 .. toctree::
    :maxdepth: 2
 
-   env-setup
    part1/index
    part2/index
