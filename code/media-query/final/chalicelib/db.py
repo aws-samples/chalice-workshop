@@ -27,16 +27,21 @@ class DynamoMediaDB(MediaDB):
 
     def list_media_files(self, startswith=None, media_type=None, label=None):
         scan_params = {}
-        filter_expressions = []
+        filter_expression = None
         if startswith is not None:
-            filter_expressions.append(Attr('name').begins_with(startswith))
+            filter_expression = self._add_to_filter_expression(
+                filter_expression, Attr('name').begins_with(startswith)
+            )
         if media_type is not None:
-            filter_expressions.append(Attr('type').eq(media_type))
+            filter_expression = self._add_to_filter_expression(
+                filter_expression, Attr('type').eq(media_type)
+            )
         if label is not None:
-            filter_expressions.append(Attr('labels').contains(label))
-        if filter_expressions:
-            scan_params['FilterExpression'] = reduce(
-                (lambda x, y: x & y), filter_expressions)
+            filter_expression = self._add_to_filter_expression(
+                filter_expression, Attr('labels').contains(label)
+            )
+        if filter_expression:
+            scan_params['FilterExpression'] = filter_expression
         response = self._table.scan(**scan_params)
         return response['Items']
 
@@ -57,7 +62,7 @@ class DynamoMediaDB(MediaDB):
                 'name': name,
             },
         )
-        return response['Item']
+        return response.get('Item')
 
     def delete_media_file(self, name):
         self._table.delete_item(
@@ -65,3 +70,8 @@ class DynamoMediaDB(MediaDB):
                 'name': name,
             }
         )
+
+    def _add_to_filter_expression(self, expression, condition):
+        if expression is None:
+            return condition
+        return expression & condition
