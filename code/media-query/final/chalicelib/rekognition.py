@@ -11,8 +11,9 @@ class RekognitonClient(object):
                 'S3Object': {
                     'Bucket': bucket,
                     'Name': key
-                }
-            }
+                },
+            },
+            MinConfidence=50.0
         )
         return [label['Name'] for label in response['Labels']]
 
@@ -28,7 +29,8 @@ class RekognitonClient(object):
             NotificationChannel={
                 'SNSTopicArn': topic_arn,
                 'RoleArn': role_arn
-            }
+            },
+            MinConfidence=50.0
         )
         return response['JobId']
 

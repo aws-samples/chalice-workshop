@@ -3,6 +3,7 @@ import json
 
 import boto3
 from chalice import Chalice
+from chalice import NotFoundError
 from chalicelib import db
 from chalicelib import rekognition
 
@@ -77,8 +78,10 @@ def list_media_files():
 
 @app.route('/{name}')
 def get_media_file(name):
-    return get_media_db().get_media_file(name)
-
+    item = get_media_db().get_media_file(name)
+    if item is None:
+        raise NotFoundError('Media file (%s) not found' % name)
+    return item
 
 def _is_image(key):
     return any([key.endswith(ext) for ext in _SUPPORTED_IMAGE_EXTENSIONS])
