@@ -39,26 +39,26 @@ The main components of the application are as follows:
 Deployment
 ----------
 
-To deploy the application, first install the necessary requirements::
+To deploy the application, first install the necessary requirements and
+install the AWS CLI::
 
   $ pip install -r requirements.txt
+  $ pip install awscli
 
 
-Then run the following commands using the ``createresource.py`` script to
-create the S3 bucket, DynamoDB table, and SNS topic needed to run this
-application::
+Then use the AWS CLI to deploy a CloudFormation stack containing the S3 bucket,
+DynamoDB table, and SNS topic needed to run this application::
 
-  $ python createresource.py --type bucket
-    Created bucket resource: media-query-5021dc20-5175-40b9-8cd0-43ca09558bd7
-
-  $ python createresource.py --type table
-    Created table resource: media-query-30da0c9d-b8f2-458a-b0a4-83b08e145d70
-
-  $ python createresource.py --type topic
-    Created topic resource: media-query-e22691bb-5972-4ec2-b334-4103f7f02733
+  $ aws cloudformation deploy --template-file resources.json --stack-name media-query --capabilities CAPABILITY_IAM
 
 
-Once those resources are created, deploy the Chalice application::
+Record the deployed resources as environment variables in the Chalice application by
+running the `recordresources.py` script::
+
+  $ python recordresources.py --stack-name media-query
+
+
+Once those resources are created and recorded, deploy the Chalice application::
 
   $ chalice deploy
 
@@ -66,20 +66,27 @@ Once those resources are created, deploy the Chalice application::
 Using the Application
 ---------------------
 
-Once the application is deployed, install both the AWS CLI and HTTPie::
+Once the application is deployed, use the AWS CLI to fetch the name of the
+bucket that is storing the media files:
 
-   $ pip install awscli
-   $ pip install httpie
+   $ aws cloudformation describe-stacks --stack-name media-query --query "Stacks[0].Outputs[?OutputKey=='MediaBucketName'].OutputValue" --output text
+   media-query-mediabucket-xtrhd3c4b59
+
 
 Upload some sample media files to your Amazon S3 bucket so the system populates
 information about the media files in your DynamoDB table::
 
-   $ aws s3 cp assets/sample.jpg s3://media-query-5021dc20-5175-40b9-8cd0-43ca09558bd7/sample.jpg
-   $ aws s3 cp assets/sample.mp4 s3://media-query-5021dc20-5175-40b9-8cd0-43ca09558bd7/sample.mp4
+   $ aws s3 cp assets/sample.jpg s3://media-query-mediabucket-xtrhd3c4b59/sample.jpg
+   $ aws s3 cp assets/sample.mp4 s3://media-query-mediabucket-xtrhd3c4b59/sample.mp4
 
 
 Wait about a minute for the media files to be populated in the database and
-then list out all object using the application's API with HTTPie::
+then install HTTPie::
+
+    $ pip install httpie
+
+
+Then, list out all if the media files using the application's API with HTTPie::
 
     $ chalice url
     https://qi5hf4djdg.execute-api.us-west-2.amazonaws.com/api/
