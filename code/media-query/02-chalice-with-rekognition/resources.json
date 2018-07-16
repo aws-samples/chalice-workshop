@@ -1,0 +1,14 @@
+{
+  "Outputs": {
+    "MediaBucketName": {
+      "Value": {
+        "Ref": "MediaBucket"
+      }
+    }
+  },
+  "Resources": {
+    "MediaBucket": {
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}
