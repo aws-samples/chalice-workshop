@@ -241,7 +241,7 @@ Instructions
     Updating policy for IAM role: media-query-dev-detect_labels_on_image
     Updating lambda function: media-query-dev-detect_labels_on_image
     Resources deployed:
-      - Lambda ARN: arn:aws:lambda:us-west-2:934212987125:function:media-query-dev-detect_labels_on_image
+      - Lambda ARN: arn:aws:lambda:us-west-2:123456789123:function:media-query-dev-detect_labels_on_image
 
 Verification
 ~~~~~~~~~~~~
