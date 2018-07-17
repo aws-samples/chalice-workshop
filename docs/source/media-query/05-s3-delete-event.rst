@@ -25,8 +25,8 @@ Instructions
 
 .. literalinclude:: ../../../code/media-query/06-web-api/app.py
    :linenos:
-   :lines: 1-56
-   :emphasize-lines: 43-47
+   :lines: 1-55
+   :emphasize-lines: 42-46
 
 
 Verification
