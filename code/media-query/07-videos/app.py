@@ -2,6 +2,7 @@ import os
 
 import boto3
 from chalice import Chalice
+from chalice import NotFoundError
 from chalicelib import db
 from chalicelib import rekognition
 
@@ -44,6 +45,34 @@ def handle_object_created(event):
 def handle_object_removed(event):
     if _is_image(event.key):
         get_media_db().delete_media_file(event.key)
+
+
+@app.route('/')
+def list_media_files():
+    params = {}
+    if app.current_request.query_params:
+        params = _extract_db_list_params(app.current_request.query_params)
+    return get_media_db().list_media_files(**params)
+
+
+@app.route('/{name}')
+def get_media_file(name):
+    item = get_media_db().get_media_file(name)
+    if item is None:
+        raise NotFoundError('Media file (%s) not found' % name)
+    return item
+
+
+def _extract_db_list_params(query_params):
+    valid_query_params = [
+        'startswith',
+        'media-type',
+        'label'
+    ]
+    return {
+        k.replace('-', '_'): v
+        for k, v in query_params.items() if k in valid_query_params
+    }
 
 
 def _is_image(key):
