@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 import boto3
 from chalice import Chalice
@@ -7,11 +7,8 @@ from chalice import NotFoundError
 from chalicelib import db
 from chalicelib import rekognition
 
-
 app = Chalice(app_name='media-query')
-app.debug = True
 
-_BUCKET_NAME = os.environ['MEDIA_BUCKET_NAME']
 _MEDIA_DB = None
 _REKOGNITION_CLIENT = None
 _SUPPORTED_IMAGE_EXTENSIONS = [
@@ -42,7 +39,7 @@ def get_rekognition_client():
     return _REKOGNITION_CLIENT
 
 
-@app.on_s3_event(bucket=_BUCKET_NAME,
+@app.on_s3_event(bucket=os.environ['MEDIA_BUCKET_NAME'],
                  events=['s3:ObjectCreated:*'])
 def handle_object_created(event):
     if _is_image(event.key):
@@ -51,7 +48,7 @@ def handle_object_created(event):
         _handle_created_video(bucket=event.bucket, key=event.key)
 
 
-@app.on_s3_event(bucket=_BUCKET_NAME,
+@app.on_s3_event(bucket=os.environ['MEDIA_BUCKET_NAME'],
                  events=['s3:ObjectRemoved:*'])
 def handle_object_removed(event):
     if _is_image(event.key) or _is_video(event.key):
@@ -83,6 +80,19 @@ def get_media_file(name):
         raise NotFoundError('Media file (%s) not found' % name)
     return item
 
+
+def _extract_db_list_params(query_params):
+    valid_query_params = [
+        'startswith',
+        'media-type',
+        'label'
+    ]
+    return {
+        k.replace('-', '_'): v
+        for k, v in query_params.items() if k in valid_query_params
+    }
+
+
 def _is_image(key):
     return any([key.endswith(ext) for ext in _SUPPORTED_IMAGE_EXTENSIONS])
 
@@ -101,15 +111,3 @@ def _handle_created_video(bucket, key):
         bucket=bucket, key=key, topic_arn=os.environ['VIDEO_TOPIC_ARN'],
         role_arn=os.environ['VIDEO_ROLE_ARN']
     )
-
-
-def _extract_db_list_params(query_params):
-    valid_query_params = [
-        'startswith',
-        'media-type',
-        'label'
-    ]
-    return {
-        k.replace('-', '_'): v
-        for k, v in query_params.items() if k in valid_query_params
-    }
