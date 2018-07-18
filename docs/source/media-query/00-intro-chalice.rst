@@ -24,9 +24,8 @@ Instructions
 
        $ virtualenv chalice-env
 
-
    If you installed Python with ``brew`` or your default Python interpreter
-   is not Python 3.6, you can use the ``-p`` flag to specify what Python
+   is not Python 2.7 or 3.6, you can use the ``-p`` flag to specify what Python
    interpreter to use::
 
        $ virtualenv -p python3 chalice-env
@@ -53,12 +52,12 @@ Verification
 1. To check that ``chalice`` was installed, run::
 
     $ chalice --version
-    chalice X.Y.Z, python 3.6.6, darwin 15.6.0
+    chalice X.Y.Z, python 3.6.5, darwin 15.6.0
 
 
 
    The version of ``chalice`` must be version ``X.Y.Z`` or higher and the
-   version of Python should be 3.6.
+   version of Python should be 2.7 or 3.6.
 
 
 Create a new Chalice application
