@@ -21,28 +21,6 @@ application:
    :depth: 1
 
 
-Install Chalice
----------------
-
-This step will ensure that ``chalice`` is installed in your virtualenv.
-
-Instructions
-~~~~~~~~~~~~
-
-1. Install ``chalice`` inside of your virtualenv::
-
-       $ pip install chalice
-
-
-Verification
-~~~~~~~~~~~~
-
-To make sure ``chalice`` was installed correctly, run::
-
-   $ chalice --version
-
-
-
 Create a new Chalice project
 ----------------------------
 Create the new Chalice project for the Media Query application.
@@ -82,27 +60,22 @@ Instructions
     $ git clone https://github.com/aws-samples/chalice-workshop.git
 
 
-2. Copy over the ``chalicelib`` directory. This will contain utility modules
-   for the application::
+2. Copy over the starting point code for section ``02-chalice-with-rekognition``
+   into your ``media-query`` directory::
 
-    $ cp -r chalice-workshop/code/media-query/02-chalice-with-rekognition/chalicelib media-query/
+    $ cp -r chalice-workshop/code/media-query/02-chalice-with-rekognition/ media-query/
 
+   .. note::
 
-3. Copy over the ``.chalice/config.json`` and the ``.chalice/policy-dev.json``.
-   The ``.chalice/config.json`` manages configuration of the Chalice
-   application, and ``.chalice/policy-dev.json`` manages AWS permissions for
-   the Chalice application::
+      If you are ever stuck and want to skip to the beginning of a different
+      part of this tutorial, you can do this by running the same command
+      as above, but instead use the ``code`` directory name of the part you
+      want to skip to. For example, if you wanted to skip to the beginning of
+      Part 5 of this tutorial, you can run the following command with
+      ``media-query`` as the current working directory and be ready to start
+      Part 5::
 
-   $ cp chalice-workshop/code/media-query/02-chalice-with-rekognition/.chalice/config.json media-query/.chalice
-   $ cp chalice-workshop/code/media-query/02-chalice-with-rekognition/.chalice/policy-dev.json media-query/.chalice
-
-
-4. Copy over the ``resources.json`` file and ``recordresources.py``. These two
-   files will be used to deploy and integrate AWS resources into the
-   Chalice application::
-
-    $ cp chalice-workshop/code/media-query/02-chalice-with-rekognition/resources.json media-query/
-    $ cp chalice-workshop/code/media-query/02-chalice-with-rekognition/recordresources.py media-query/
+       media-query$  cp -r ../chalice-workshop/code/media-query/05-s3-delete-event/ ./
 
 
 Verification
@@ -123,6 +96,35 @@ Verification
     ├── recordresources.py
     ├── requirements.txt
     └── resources.json
+
+   For the files that got added, they will be used later in the tutorial but
+   for a brief overview of the new files:
+
+     * ``chalicelib``: A directory for managing Python modules outside of the
+       ``app.py``. It is common to put the lower-level logic in the
+       ``chalicelib`` directory and keep the higher level logic in the
+       ``app.py`` file so it stays readable and small. You can read more
+       about ``chalicelib`` in the Chalice
+       `documentation <http://chalice.readthedocs.io/en/latest/topics/multifile.html>`__.
+
+     * ``chalicelib/rekognition.py``: A utility module to further simplify
+       ``boto3`` client calls to Amazon Rekognition.
+
+     * ``.chalice/config.json``: Manages configuration of the Chalice
+       application. You can read more about the configuration file in
+       the Chalice `documentation <https://chalice.readthedocs.io/en/latest/topics/configfile.html>`__.
+
+     * ``.chalice/policy-dev.json``: The IAM policy to apply to your Lambda
+       function. This essentially manages the AWS permissions of your
+       application
+
+     * ``resources.json``: A CloudFormation template with additional resources
+       to deploy outside of the Chalice application.
+
+     * ``recordresources.py``: Records resource values from the additional
+       resources deployed to your CloudFormation stack and saves them
+       as environment variables in your Chalice application .
+
 
 
 Write a Lambda function for detecting labels
@@ -155,7 +157,7 @@ Instructions
     app = Chalice(app_name='media-query')
 
 
-4. Import ``boto3`` and the ``chalicelib.rekognition`` module in your
+3. Import ``boto3`` and the ``chalicelib.rekognition`` module in your
    ``app.py`` file:
 
 .. literalinclude:: ../../../code/media-query/03-add-db/app.py
@@ -253,23 +255,12 @@ Verification
     $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/sample.jpg s3://$MEDIA_BUCKET_NAME
 
 
-2. Print out the value of ``MEDIA_BUCKET_NAME``::
+2. Create a ``sample-event.json`` file to use with ``chalice invoke``::
 
-    $ echo $MEDIA_BUCKET_NAME
-    media-query-mediabucket-fb8oddjbslv1
-
-
-3. Create a ``sample-event.json`` file to use with ``chalice invoke``. Using
-   the value from ``MEDIA_BUCKET_NAME`` as the value of the ``Bucket`` key in
-   the sample event, the contents of the file should be::
-
-    {
-      "Bucket": "media-query-mediabucket-fb8oddjbslv1",
-      "Key": "sample.jpg"
-    }
+    $ echo "{\"Bucket\": \"$MEDIA_BUCKET_NAME\", \"Key\": \"sample.jpg\"}" > sample-event.json
 
 
-2. Run ``chalice invoke`` on the ``detect_labels_on_image`` Lambda function::
+3. Run ``chalice invoke`` on the ``detect_labels_on_image`` Lambda function::
 
     $ chalice invoke --name detect_labels_on_image < sample-event.json
 

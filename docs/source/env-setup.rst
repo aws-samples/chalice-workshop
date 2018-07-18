@@ -9,7 +9,12 @@ development environment must have:
 * AWS credentials
 * git
 
-If you have all of the above requirements, you can skip this step entirely.
+If you have all of the above requirements, you can skip these steps entirely.
+
+.. contents::
+   :local:
+   :depth: 1
+
 
 Setting up Python
 -----------------
@@ -174,11 +179,13 @@ To actually set up AWS credentials on your development environment, use the
 AWS CLI. To check if you have the AWS CLI installed, run::
 
     $ aws --version
-    aws-cli/1.11.126 Python/3.6.5 Darwin/15.6.0 botocore/1.7.30
+    aws-cli/1.15.60 Python/3.6.5 Darwin/15.6.0 botocore/1.10.59
 
 
-If it prints out a version such as ``aws-cli/1.11.126 Python/3.6.5 Darwin/15.6.0 botocore/1.7.30``, that means you have the AWS CLI installed on your
-developement environment.
+If it prints out a version, that means you have the AWS CLI installed on your
+development environment. To get credentials set, it should not matter what
+version of the AWS CLI you are using. The tutorial you choose to follow will
+inform you if you need a specific version of the AWS CLI.
 
 If you do not have the AWS CLI installed, you can install it by following the
 instructions in the `user guide <https://docs.aws.amazon.com/cli/latest/userguide/installing.html>`__. Assuming ``pip`` is installed on your development
