@@ -100,7 +100,7 @@ Instructions
     $ cd workshop-intro
 
 
-2. Open the ``app.py`` file and delete all lines of code underneath
+2. Open the ``app.py`` file and delete **all** lines of code underneath
    the line: ``app = Chalice(app_name='workshop-intro')``. Your ``app.py`` file
    should only consist of the following lines::
 
