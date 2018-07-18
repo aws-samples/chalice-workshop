@@ -246,11 +246,10 @@ Instructions
 Verification
 ~~~~~~~~~~~~
 
-1. Run ``chalice invoke`` on the updated ``detect_labels_on_image`` Lambda
-   function::
+1. Run ``chalice invoke`` with the ``sample-event.json`` on the updated
+   ``detect_labels_on_image`` Lambda function::
 
-    $ chalice invoke --name detect_labels_on_image \
-        --payload "{\"Bucket\": \"$MEDIA_BUCKET_NAME\", \"Key\": \"sample.jpg\"}"
+    $ chalice invoke --name detect_labels_on_image < sample-event.json
     null
 
 2. Use the ``get-item`` CLI command to ensure the ``sample.jpg`` data

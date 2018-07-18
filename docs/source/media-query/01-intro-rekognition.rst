@@ -17,9 +17,9 @@ Instructions
 1. Check to see the CLI is installed::
 
     $ aws --version
-    aws-cli/1.15.59 Python/2.7.10 Darwin/15.6.0 botocore/1.10.58
+    aws-cli/1.15.60 Python/3.6.1 Darwin/15.6.0 botocore/1.10.59
 
-  The version of the CLI must be version X.Y.Z or greater.
+   The version of the CLI must be version 1.15.60 or greater.
 
 2a. If the CLI is not installed, follow the installation instructions in the
     :ref:`aws-cli-setup` section.
@@ -37,12 +37,12 @@ Instructions
 Verification
 ~~~~~~~~~~~~
 
-Run the following command::
+1. Run the following command::
 
     $ aws --version
-    aws-cli/1.15.59 Python/2.7.10 Darwin/15.6.0 botocore/1.10.58
+    aws-cli/1.15.60 Python/3.6.1 Darwin/15.6.0 botocore/1.10.59
 
-The version displayed of the CLI must be version X.Y.Z or greater.
+   The version displayed of the CLI must be version 1.15.60 or greater.
 
 
 Detect image labels using Rekognition
