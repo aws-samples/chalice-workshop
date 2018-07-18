@@ -9,8 +9,7 @@ detected for that image. So assuming the ``sample.jpg`` image is stored in a
 bucket ``some-bucket`` under the key ``sample.jpg``, we will be able to invoke
 the Lambda function to return the labels that Rekognition detected::
 
-    $ chalice invoke --name detect_labels_on_image \
-        --payload '{"Bucket": "some-bucket", "Key": "sample.jpg"}'
+    $ echo '{"Bucket": "some-bucket", "Key": "sample.jpg"}' | chalice invoke --name detect_labels_on_image
     ["Animal", "Canine", "Dog", "German Shepherd", "Mammal", "Pet", "Collie"]
 
 
@@ -254,10 +253,24 @@ Verification
     $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/sample.jpg s3://$MEDIA_BUCKET_NAME
 
 
+2. Print out the value of ``MEDIA_BUCKET_NAME``::
+
+    $ echo $MEDIA_BUCKET_NAME
+    media-query-mediabucket-fb8oddjbslv1
+
+
+3. Create a ``sample-event.json`` file to use with ``chalice invoke``. Using
+   the value from ``MEDIA_BUCKET_NAME``, the contents of the file should be::
+
+    {
+      "Bucket": "media-query-mediabucket-fb8oddjbslv1",
+      "Key": "sample.jpg"
+    }
+
+
 2. Run ``chalice invoke`` on the ``detect_labels_on_image`` Lambda function::
 
-    $ chalice invoke --name detect_labels_on_image \
-        --payload "{\"Bucket\": \"$MEDIA_BUCKET_NAME\", \"Key\": \"sample.jpg\"}"
+    $ chalice invoke --name detect_labels_on_image < sample-event.json
 
 
    It should return the following labels in the output::
