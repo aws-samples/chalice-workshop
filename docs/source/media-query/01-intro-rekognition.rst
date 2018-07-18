@@ -17,7 +17,7 @@ Instructions
 1. Check to see the CLI is installed::
 
     $ aws --version
-    aws-cli/1.15.60 Python/3.6.1 Darwin/15.6.0 botocore/1.10.59
+    aws-cli/1.15.60 Python/3.6.5 Darwin/15.6.0 botocore/1.10.59
 
    The version of the CLI must be version 1.15.60 or greater.
 
