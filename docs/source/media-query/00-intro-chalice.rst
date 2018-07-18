@@ -1,5 +1,5 @@
-Part 0: Introduction to Chalice
-===============================
+Part 0: Introduction to AWS Lambda and Chalice
+==============================================
 
 This section will provide an introduction on how to use AWS Chalice and provide
 instructions on how to go about building your very first Chalice application
@@ -206,8 +206,7 @@ Verification
 
 2. It is also possible for your Lambda function to encounter runtime errors.
    Passing in an empty event payload when invoking the ``hello_name`` will
-   result in the Lambda Function returning a Traceback as there is no ``name``
-   key in the ``event`` passed to the Lambda function::
+   result in the Lambda Function returning a Traceback::
 
     $ chalice invoke -n hello_name
     Traceback (most recent call last):

@@ -14,12 +14,13 @@ To accomplish this we will be performing the following steps:
 Introduction to Rekognition object detection in videos
 ------------------------------------------------------
 
-To detect labels in a video using Rekognition is a different workflow.
-Specifically, the workflow is asynchronous where you must initiate a job
-to detect labels using the
+Detecting labels in a video is a different workflow than detecting image labels
+when using Rekognition. Specifically, the workflow is asynchronous where you
+must initiate a label detection job using the
 `StartLabelDetection <https://docs.aws.amazon.com/rekognition/latest/dg/API_StartLabelDetection.html>`__
-API and then calling `GetLabelDetection <https://docs.aws.amazon.com/rekognition/latest/dg/API_GetLabelDetection.html>`__
-once the job is complete. This step will introduce you to this workflow.
+API and then call `GetLabelDetection <https://docs.aws.amazon.com/rekognition/latest/dg/API_GetLabelDetection.html>`__
+once the job is complete to retrieve all of the detected labels. This step will
+introduce you to this workflow.
 
 Instructions
 ~~~~~~~~~~~~
@@ -29,7 +30,7 @@ Instructions
     $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/sample.mp4 s3://$MEDIA_BUCKET_NAME
 
 
-2. Run the ``start-label-detection`` command with the AWS CLI to start an
+2. Run the ``start-label-detection`` command with the AWS CLI to start a
    label detection job on the uploaded video::
 
     $ aws rekognition start-label-detection \
@@ -39,8 +40,8 @@ Instructions
     }
 
 
-3. Run ``get-label-detection`` command to retrieve the labels from the until
-   the ``JobStatus`` field is equal to ``SUCCEEDED``::
+3. Run the ``get-label-detection`` command until the ``JobStatus`` field is
+   equal to ``SUCCEEDED`` and retrieve the video labels::
 
     $ aws rekognition get-label-detection --job-id 677b0209126a8fb9c1edc04759d22436b081e13fde955a2cb802c3434ba61b6c
 
@@ -107,9 +108,8 @@ Rekognition can use to publish this message.
 Instructions
 ~~~~~~~~~~~~
 
-1. Copy the update version of the ``resources.json`` that has an updated
-   CloudFormation template containing an IAM role and SNS topic for Rekognition
-   to publish to::
+1. Copy the updated version of the ``resources.json`` CloudFormation template
+   containing an IAM role and SNS topic for Rekognition to publish to::
 
     $ cp ../chalice-workshop/code/media-query/07-videos/resources.json .
 
@@ -167,13 +167,13 @@ Instructions
    `app.on_sns_message <https://chalice.readthedocs.io/en/latest/api.html#Chalice.on_sns_message>`__
    decorator:
 
-.. literalinclude:: ../../../code/media-query/final/app.py
-   :lines: 58-59
+   .. literalinclude:: ../../../code/media-query/final/app.py
+      :lines: 58-59
 
 2. Import ``json`` at the top of the ``app.py`` file:
 
-.. literalinclude:: ../../../code/media-query/final/app.py
-   :lines: 1
+   .. literalinclude:: ../../../code/media-query/final/app.py
+      :lines: 1
 
 
 3. Update the ``add_video_file()`` function, to process the ``event`` argument
@@ -181,8 +181,8 @@ Instructions
    by retrieving the job ID from the message, retrieving the processed labels
    from Rekognition, and adding the video to the database:
 
-.. literalinclude:: ../../../code/media-query/final/app.py
-   :lines: 58-65
+   .. literalinclude:: ../../../code/media-query/final/app.py
+      :lines: 58-65
 
 3. Run ``chalice deploy`` to deploy the new Lambda function::
 
@@ -222,7 +222,7 @@ Verification
 
 
 
-3. Run the ``start-label-detection`` command with the AWS CLI to start an
+3. Run the ``start-label-detection`` command with the AWS CLI to start a
    label detection job on the uploaded video::
 
     $ aws rekognition start-label-detection \

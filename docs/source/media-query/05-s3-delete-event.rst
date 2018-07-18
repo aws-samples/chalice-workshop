@@ -14,7 +14,7 @@ Add Lambda function for S3 object deletion
 ------------------------------------------
 
 Add a new Lambda function that is invoked whenever an object is deleted from
-the S3 bucket, and if it is an image, removes the image from the table.
+the S3 bucket and if it is an image, removes the image from the table.
 
 Instructions
 ~~~~~~~~~~~~
@@ -23,10 +23,8 @@ Instructions
    is triggered whenever an object gets deleted from the bucket and
    deletes the item from table if it is an image:
 
-.. literalinclude:: ../../../code/media-query/06-web-api/app.py
-   :linenos:
-   :lines: 1-55
-   :emphasize-lines: 42-46
+  .. literalinclude:: ../../../code/media-query/06-web-api/app.py
+     :lines: 42-46
 
 
 Verification
@@ -38,8 +36,8 @@ Verification
    :linenos:
 
 
-Redeploy Chalice application
-----------------------------
+Redeploy the Chalice application
+--------------------------------
 
 Deploy the updated Chalice application with the new Lambda function.
 
