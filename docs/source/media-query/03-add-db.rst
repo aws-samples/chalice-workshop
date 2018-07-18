@@ -22,12 +22,14 @@ Copy over files needed for integrating the DynamoDB table into the application
 Instructions
 ~~~~~~~~~~~~
 
-1. Copy the ``db.py`` module into the ``chalicelib`` package::
+1. Using ``media-query`` as the current working directory, copy the ``db.py``
+   module into the ``chalicelib`` package::
 
     $ cp ../chalice-workshop/code/media-query/03-add-db/chalicelib/db.py chalicelib/
 
 
-2. Copy over an updated version of the ``resources.json`` file::
+2. Using ``media-query`` as the current working directory, copy over an updated
+   version of the ``resources.json`` file::
 
     $ cp ../chalice-workshop/code/media-query/03-add-db/resources.json .
 

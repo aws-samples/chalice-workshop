@@ -178,8 +178,8 @@ Instructions
 
 3. Update the ``add_video_file()`` function, to process the ``event`` argument
    of type `SNSEvent <https://chalice.readthedocs.io/en/latest/api.html#SNSEvent>`__
-   by retrieving the job ID from the message, retrieving the processed labels
-   from Rekognition, and adding the video to the database:
+   by retrieving the job ID from the message, retrieve the processed labels
+   from Rekognition, and add the video to the database:
 
    .. literalinclude:: ../../../code/media-query/final/app.py
       :lines: 58-65
@@ -263,7 +263,7 @@ Verification
         "type": "video"
     }
 
-Automate video workflow on S3 uploads and downloads
+Automate video workflow on S3 uploads and deletions
 ---------------------------------------------------
 
 Now let's update the application so we do not have to manually invoke the
@@ -392,10 +392,63 @@ Verification
 Final Code
 ----------
 Congratulations! You have now completed this tutorial. Below is the final code
-that you should have wrote in the ``app.py`` of your application:
+that you should have wrote in the ``app.py`` of your Chalice application:
 
 .. literalinclude:: ../../../code/media-query/final/app.py
    :linenos:
 
 For the complete final application, see the
 `GitHub repository <https://github.com/aws-samples/chalice-workshop/tree/events-workshop/code/media-query/final>`__
+
+
+Cleaning up the Chalice application
+-----------------------------------
+
+Now that you have completed this tutorial, you may want to clean up the AWS
+resources running this application. This step provides instructions on how
+you can clean up your deployed resources once you are done using this application.
+
+Instructions
+~~~~~~~~~~~~
+
+
+1. Delete the chalice application::
+
+    $ chalice delete
+    Deleting Rest API: kyfn3gqcf0
+    Deleting function: arn:aws:lambda:us-west-2:123456789123:function:media-query-dev
+    Deleting IAM role: media-query-dev-api_handler
+    Deleting function: arn:aws:lambda:us-west-2:123456789123:function:media-query-dev-add_video_file
+    Deleting IAM role: media-query-dev-add_video_file
+    Deleting function: arn:aws:lambda:us-west-2:123456789123:function:media-query-dev-handle_object_removed
+    Deleting IAM role: media-query-dev-handle_object_removed
+    Deleting function: arn:aws:lambda:us-west-2:123456789123:function:media-query-dev-handle_object_created
+    Deleting IAM role: media-query-dev-handle_object_created
+
+2. Delete all objects in your S3 bucket::
+
+    $ aws s3 rm s3://$MEDIA_BUCKET_NAME --recursive
+    delete: s3://media-query-mediabucket-4b1h8anboxpa/sample.jpg
+    delete: s3://media-query-mediabucket-4b1h8anboxpa/sample.mp4
+
+3. Delete the CloudFormation stack containing the additional AWS resources::
+
+    $ aws cloudformation delete-stack --stack-name media-query
+
+Validation
+~~~~~~~~~~
+
+1. Ensure that the API for the application no longer exists::
+
+    $ chalice url
+    Error: Could not find a record of a Rest API in chalice stage: 'dev'
+
+
+2. Check the existence of a couple of resources from the CloudFormation stack
+   to make sure the resources no longer exist::
+
+    $ aws s3 ls s3://$MEDIA_BUCKET_NAME
+    An error occurred (NoSuchBucket) when calling the ListObjects operation: The specified bucket does not exist
+
+    $ aws dynamodb describe-table --table-name $MEDIA_TABLE_NAME
+    An error occurred (ResourceNotFoundException) when calling the DescribeTable operation: Requested resource not found: Table: media-query-MediaTable-YIM7BMEIOF8Y not found
