@@ -18,7 +18,7 @@ Add Lambda event source for S3 object creation event
 ----------------------------------------------------
 
 Change the Lambda function to be invoked whenever an object is uploaded to
-a S3 bucket using the
+a S3 bucket via the
 `on_s3_event decorator <https://chalice.readthedocs.io/en/latest/topics/events.html#s3-events>`__.
 
 Instructions
@@ -41,14 +41,21 @@ Instructions
     def handle_object_created(event):
 
 
-3. Update the ``handle_object_created`` function to use the new ``event``
-   argument of type `S3Event <https://chalice.readthedocs.io/en/latest/api.html#S3Event>`__
-   and only do object detection and database additions on specific file extensions:
+3. Add the list ``_SUPPORTED_IMAGE_EXTENSTIONS`` representing a list of
+   supported image extensions:
 
-.. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
-   :linenos:
-   :lines: 1-48
-   :emphasize-lines: 12-15,37-48
+   .. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
+      :lines: 12-15
+
+
+4. Update the ``handle_object_created`` function to use the new ``event``
+   argument of type `S3Event <https://chalice.readthedocs.io/en/latest/api.html#S3Event>`__
+   and only do object detection and database additions on specific image
+   file extensions:
+
+   .. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
+      :lines: 35-48
+      :emphasize-lines: 3-6,8-9,12-14
 
 
 Validation
@@ -59,8 +66,8 @@ Validation
 .. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
    :linenos:
 
-Redeploy Chalice application
-----------------------------
+Redeploy the Chalice application
+--------------------------------
 
 Deploy the updated Chalice application.
 

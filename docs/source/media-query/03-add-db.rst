@@ -53,7 +53,8 @@ Verification
     └── resources.json
 
    Note there will be more files listed with ``tree`` assuming you already
-   deployed the application once.
+   deployed the application once. However, the files listed from the ``tree``
+   output above are required.
 
 2. Ensure the contents of the ``resources.json`` is now the following::
 
@@ -110,7 +111,7 @@ Instructions
 ~~~~~~~~~~~~
 
 1. Use the AWS CLI and the ``resources.json`` CloudFormation template to
-   redeploy the ``media-query`` CloudFormation stack to create a new
+   redeploy the ``media-query`` CloudFormation stack and create a new
    DynamoDB ::
 
     $ aws cloudformation deploy --template-file resources.json \
@@ -179,7 +180,8 @@ Instructions
    :emphasize-lines: 1,5
 
 3. Add a helper function for instantiating a ``db.DynamoMediaDB`` class using
-   the DynamoDB table name stored as an environment variable:
+   the DynamoDB table name stored as the environment variable
+   ``MEDIA_TABLE_NAME``:
 
 .. literalinclude:: ../../../code/media-query/04-s3-event/app.py
    :linenos:
@@ -189,10 +191,9 @@ Instructions
 4. Update the ``detect_labels_on_image`` Lambda function to save the image
    along with the detected labels to the database:
 
-.. literalinclude:: ../../../code/media-query/04-s3-event/app.py
-   :linenos:
-   :lines: 1-36
-   :emphasize-lines: 35-36
+   .. literalinclude:: ../../../code/media-query/04-s3-event/app.py
+      :lines: 31-36
+      :emphasize-lines: 5-6
 
 
 Verification

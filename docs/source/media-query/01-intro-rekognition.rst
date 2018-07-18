@@ -3,8 +3,8 @@ Part 1: Introduction to Amazon Rekognition
 
 The application being built will leverage
 `Amazon Rekognition <https://aws.amazon.com/rekognition/>`__ to detect objects
-in images and videos. This part of the tutorial will teach you how more about
-Rekognition and how to interact with its API.
+in images and videos. This part of the tutorial will teach you more about
+Rekognition and how to detect objects with its API.
 
 
 Install the AWS CLI

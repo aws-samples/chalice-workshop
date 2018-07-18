@@ -7,7 +7,7 @@ version of the application will accept the S3 bucket and key name of an image,
 call the ``DetectLabels`` API on that stored image, and return the labels
 detected for that image. So assuming the ``sample.jpg`` image is stored in a
 bucket ``some-bucket`` under the key ``sample.jpg``, we will be able to invoke
-the Lambda function to return the labels that Rekognition detected::
+a Lambda function that return the labels Rekognition detected::
 
     $ echo '{"Bucket": "some-bucket", "Key": "sample.jpg"}' | chalice invoke --name detect_labels_on_image
     ["Animal", "Canine", "Dog", "German Shepherd", "Mammal", "Pet", "Collie"]
@@ -60,7 +60,7 @@ Verification
 ~~~~~~~~~~~~
 
 To ensure that the project was created, list the contents of the newly created
-``mytodo`` directory::
+``media-query`` directory::
 
     $ ls media-query
     app.py           requirements.txt
@@ -139,8 +139,8 @@ Instructions
     $ cd media-query
 
 
-2. Add ``boto3``, the AWS SDK for Python, as a dependency to the application
-   in the ``requirements.txt``:
+2. Add ``boto3``, the AWS SDK for Python, as a dependency in the
+   ``requirements.txt`` file:
 
 .. literalinclude:: ../../../code/media-query/03-add-db/requirements.txt
    :linenos:
@@ -171,8 +171,8 @@ Instructions
    :emphasize-lines: 7,10-15
 
 5. Add a new function ``detect_labels_on_image`` decorated by the
-   ``app.lambda_function`` decorator that uses a rekognition client to detect
-   labels on an image stored in a S3 bucket:
+   ``app.lambda_function`` decorator. Have the function use a rekognition
+   client to detect and return labels on an image stored in a S3 bucket:
 
 .. literalinclude:: ../../../code/media-query/03-add-db/app.py
    :linenos:
@@ -196,7 +196,7 @@ Verification
 Create a S3 bucket
 ------------------
 
-Create a S3 bucket to upload images and use with the Chalice application.
+Create a S3 bucket for uploading images and use with the Chalice application.
 
 Instructions
 ~~~~~~~~~~~~
@@ -260,7 +260,8 @@ Verification
 
 
 3. Create a ``sample-event.json`` file to use with ``chalice invoke``. Using
-   the value from ``MEDIA_BUCKET_NAME``, the contents of the file should be::
+   the value from ``MEDIA_BUCKET_NAME`` as the value of the ``Bucket`` key in
+   the sample event, the contents of the file should be::
 
     {
       "Bucket": "media-query-mediabucket-fb8oddjbslv1",
