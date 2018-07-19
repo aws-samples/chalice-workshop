@@ -1,7 +1,7 @@
 Prerequisite: Setting up your environment
 =========================================
 
-To start working with AWS Chalice, there are two initial requirements your
+To start working with AWS Chalice, there are some requirements your
 development environment must have:
 
 * Python 2.7 or 3.6
