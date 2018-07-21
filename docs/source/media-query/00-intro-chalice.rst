@@ -52,11 +52,11 @@ Verification
 1. To check that ``chalice`` was installed, run::
 
     $ chalice --version
-    chalice X.Y.Z, python 3.6.5, darwin 15.6.0
+    chalice 1.6.0, python 3.6.5, darwin 15.6.0
 
 
 
-   The version of ``chalice`` must be version ``X.Y.Z`` or higher and the
+   The version of ``chalice`` must be version ``1.6.0`` or higher and the
    version of Python should be 2.7 or 3.6.
 
 
@@ -215,6 +215,7 @@ Verification
       File "/var/task/app.py", line 12, in hello_name
         name = event['name']
     KeyError: 'name'
+    Error: Unhandled exception in Lambda function, details above.
 
 
 Delete the Chalice application
@@ -241,10 +242,8 @@ Validation
 
     $ chalice invoke -n hello_world
     Could not find invokable resource with name: hello_world
-    Aborted!
     $ chalice invoke -n hello_name
     Could not find invokable resource with name: hello_name
-    Aborted!
 
    You should no longer be able to invoke both Lambda functions as they have
    been deleted.
