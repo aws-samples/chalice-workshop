@@ -245,7 +245,12 @@ Instructions
 Verification
 ~~~~~~~~~~~~
 
-1. Use HTTPie to query the deployed API for all media items::
+1. Reupload the ``othersample.jpg`` image using the CLI::
+
+    $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/othersample.jpg s3://$MEDIA_BUCKET_NAME
+
+
+2. Use HTTPie to query the deployed API for all media items::
 
     $ http $(chalice url)
     HTTP/1.1 200 OK
@@ -259,6 +264,95 @@ Verification
     X-Cache: Miss from cloudfront
     x-amz-apigw-id: KLP2SFnTPHcFeqw=
     x-amzn-RequestId: b5e7488a-89cb-11e8-acbf-eda14961f501
+
+    [
+        {
+            "labels": [
+                "Human",
+                "People",
+                "Person",
+                "Phone Booth",
+                "Bus",
+                "Transportation",
+                "Vehicle",
+                "Man",
+                "Face",
+                "Leisure Activities",
+                "Tourist",
+                "Portrait",
+                "Crowd"
+            ],
+            "name": "othersample.jpg",
+            "type": "image"
+        },
+        {
+            "labels": [
+                "Animal",
+                "Canine",
+                "Dog",
+                "German Shepherd",
+                "Mammal",
+                "Pet",
+                "Collie"
+            ],
+            "name": "sample.jpg",
+            "type": "image"
+        }
+    ]
+
+
+   Note ``chalice url`` just returns the URL of the remotely deployed API.
+
+
+3. Use HTTPie to test out a couple of the query string parameters::
+
+    $ http $(chalice url) label=='Phone Booth'
+    HTTP/1.1 200 OK
+    Connection: keep-alive
+    Content-Length: 207
+    Content-Type: application/json
+    Date: Sun, 22 Jul 2018 07:49:37 GMT
+    Via: 1.1 75fd15ce5d9f38e4c444039a1548df96.cloudfront.net (CloudFront)
+    X-Amz-Cf-Id: nYpeS8kk_lFklCA7wCkOI0NO1wabDI3jvs3UpHFlsJ-c0nvlXNrvJQ==
+    X-Amzn-Trace-Id: Root=1-5b543710-8beb4000395cd60e5688841a;Sampled=0
+    X-Cache: Miss from cloudfront
+    x-amz-apigw-id: Ka2KpF0nvHcF1hg=
+    x-amzn-RequestId: c7e9cabf-8d83-11e8-b109-5f2c96dac9da
+
+    [
+        {
+            "labels": [
+                "Human",
+                "People",
+                "Person",
+                "Phone Booth",
+                "Bus",
+                "Transportation",
+                "Vehicle",
+                "Man",
+                "Face",
+                "Leisure Activities",
+                "Tourist",
+                "Portrait",
+                "Crowd"
+            ],
+            "name": "othersample.jpg",
+            "type": "image"
+        }
+    ]
+
+    $ http $(chalice url) startswith==sample
+    HTTP/1.1 200 OK
+    Connection: keep-alive
+    Content-Length: 126
+    Content-Type: application/json
+    Date: Sun, 22 Jul 2018 07:51:03 GMT
+    Via: 1.1 53657f22d99084ad547a21392858391b.cloudfront.net (CloudFront)
+    X-Amz-Cf-Id: TORlA6wdOff5n4xHUH9ftnXNxFrTmQsSFG18acx7iwKLA_NsUoUoCg==
+    X-Amzn-Trace-Id: Root=1-5b543766-912f6e067cb58ddcb6a973de;Sampled=0
+    X-Cache: Miss from cloudfront
+    x-amz-apigw-id: Ka2YEGNvPHcF8SA=
+    x-amzn-RequestId: fb25c9e7-8d83-11e8-898d-8da83b49132b
 
     [
         {
@@ -277,9 +371,7 @@ Verification
     ]
 
 
-   Not ``chalice url`` just returns the URL of the remotely deployed API.
-
-2. Use HTTPie to query the deployed API for ``sample.jpg`` image::
+4. Use HTTPie to query the deployed API for ``sample.jpg`` image::
 
     $ http $(chalice url)sample.jpg
     HTTP/1.1 200 OK
