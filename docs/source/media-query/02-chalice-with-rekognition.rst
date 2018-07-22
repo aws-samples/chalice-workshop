@@ -55,15 +55,11 @@ Copy over starting files to facilitate development of the application
 Instructions
 ~~~~~~~~~~~~
 
-1. If you have not already done so, clone the repository for this workshop::
 
-    $ git clone https://github.com/aws-samples/chalice-workshop.git
-
-
-2. Copy over the starting point code for section ``02-chalice-with-rekognition``
+1. Copy over the starting point code for section ``02-chalice-with-rekognition``
    into your ``media-query`` directory::
 
-    $ cp -r chalice-workshop/code/media-query/02-chalice-with-rekognition/ media-query/
+    $ cp -r chalice-workshop/code/media-query/02-chalice-with-rekognition/. media-query/
 
    .. note::
 
@@ -75,7 +71,7 @@ Instructions
       ``media-query`` as the current working directory and be ready to start
       Part 5::
 
-       media-query$  cp -r ../chalice-workshop/code/media-query/05-s3-delete-event/ ./
+       media-query$  cp -r ../chalice-workshop/code/media-query/05-s3-delete-event/. ./
 
 
 Verification
@@ -206,8 +202,7 @@ Instructions
 1. Use the AWS CLI and the ``resources.json`` CloudFormation template to deploy
    a CloudFormation stack ``media-query`` that contains a S3 bucket::
 
-    $ aws cloudformation deploy --template-file resources.json \
-        --stack-name media-query --capabilities CAPABILITY_IAM
+    $ aws cloudformation deploy --template-file resources.json --stack-name media-query
 
 
 Verification

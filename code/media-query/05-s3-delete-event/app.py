@@ -9,10 +9,10 @@ app = Chalice(app_name='media-query')
 
 _MEDIA_DB = None
 _REKOGNITION_CLIENT = None
-_SUPPORTED_IMAGE_EXTENSIONS = [
+_SUPPORTED_IMAGE_EXTENSIONS = (
     '.jpg',
     '.png',
-]
+)
 
 
 def get_media_db():
@@ -40,7 +40,7 @@ def handle_object_created(event):
 
 
 def _is_image(key):
-    return any([key.endswith(ext) for ext in _SUPPORTED_IMAGE_EXTENSIONS])
+    return key.endswith(_SUPPORTED_IMAGE_EXTENSIONS)
 
 
 def _handle_created_image(bucket, key):
