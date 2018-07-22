@@ -263,6 +263,42 @@ Verification
         "type": "video"
     }
 
+5. Make sure the ``sample.mp4`` is included when querying for items that have a
+   ``video`` media type::
+
+    $ http $(chalice url) media-type==video
+    HTTP/1.1 200 OK
+    Connection: keep-alive
+    Content-Length: 153
+    Content-Type: application/json
+    Date: Sun, 22 Jul 2018 07:58:28 GMT
+    Via: 1.1 5d53b9570a535c2d94ce93c20abbd471.cloudfront.net (CloudFront)
+    X-Amz-Cf-Id: JwvyQ_rEePlEyRAGjtQ1jDnvjXPKt8ea3FiNLdgBbjWnf2G4UTpUaw==
+    X-Amzn-Trace-Id: Root=1-5b543923-02ddf1e74491eb77d692c8fd;Sampled=0
+    X-Cache: Miss from cloudfront
+    x-amz-apigw-id: Ka3dkFlHvHcFYIQ=
+    x-amzn-RequestId: 0441fc0a-8d85-11e8-b51a-bd624fe1291d
+
+    [
+        {
+            "labels": [
+                "Footwear",
+                "Human",
+                "People",
+                "Nest",
+                "Bird Nest",
+                "Person",
+                "Dog",
+                "Husky",
+                "Clothing",
+                "Animal"
+            ],
+            "name": "sample.mp4",
+            "type": "video"
+        }
+    ]
+
+
 Automate video workflow on S3 uploads and deletions
 ---------------------------------------------------
 

@@ -58,9 +58,9 @@ Instructions
 Verification
 ~~~~~~~~~~~~
 
-1. Delete the uploaded ``sample2.jpg`` object from the previous part::
+1. Delete the uploaded ``othersample.jpg`` object from the previous part::
 
-    $ aws s3 rm s3://$MEDIA_BUCKET_NAME/sample2.jpg
+    $ aws s3 rm s3://$MEDIA_BUCKET_NAME/othersample.jpg
 
 
 2. Use the ``scan`` CLI command to ensure the object is no longer in the

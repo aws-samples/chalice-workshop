@@ -90,43 +90,60 @@ Instructions
 Validation
 ~~~~~~~~~~
 
-1. Upload the ``sample.jpg`` image to the S3 bucket under a new key name
-   ``sample2.jpg``::
+1. Upload the ``othersample.jpg`` image to the S3 bucket::
 
-    $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/sample.jpg s3://$MEDIA_BUCKET_NAME/sample2.jpg
+    $ aws s3 cp ../chalice-workshop/code/media-query/final/assets/othersample.jpg s3://$MEDIA_BUCKET_NAME
 
-2. Use the ``get-item`` CLI command to ensure the ``sample2.jpg`` data
+2. Use the ``get-item`` CLI command to ensure the ``othersample.jpg`` data
    was automatically populated in the DynamoDB table::
 
     $ aws dynamodb get-item --table-name $MEDIA_TABLE_NAME \
-        --key '{"name": {"S": "sample2.jpg"}}'
+        --key '{"name": {"S": "othersample.jpg"}}'
     {
         "Item": {
             "name": {
-                "S": "sample2.jpg"
+                "S": "othersample.jpg"
             },
             "labels": {
                 "L": [
                     {
-                        "S": "Animal"
+                        "S": "Human"
                     },
                     {
-                        "S": "Canine"
+                        "S": "People"
                     },
                     {
-                        "S": "Dog"
+                        "S": "Person"
                     },
                     {
-                        "S": "German Shepherd"
+                        "S": "Phone Booth"
                     },
                     {
-                        "S": "Mammal"
+                        "S": "Bus"
                     },
                     {
-                        "S": "Pet"
+                        "S": "Transportation"
                     },
                     {
-                        "S": "Collie"
+                        "S": "Vehicle"
+                    },
+                    {
+                        "S": "Man"
+                    },
+                    {
+                        "S": "Face"
+                    },
+                    {
+                        "S": "Leisure Activities"
+                    },
+                    {
+                        "S": "Tourist"
+                    },
+                    {
+                        "S": "Portrait"
+                    },
+                    {
+                        "S": "Crowd"
                     }
                 ]
             },
