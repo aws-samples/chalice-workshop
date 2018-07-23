@@ -41,7 +41,7 @@ Instructions
     def handle_object_created(event):
 
 
-3. Add the list ``_SUPPORTED_IMAGE_EXTENSTIONS`` representing a list of
+3. Add the tuple ``_SUPPORTED_IMAGE_EXTENSTIONS`` representing a list of
    supported image extensions:
 
    .. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
@@ -55,7 +55,7 @@ Instructions
 
    .. literalinclude:: ../../../code/media-query/05-s3-delete-event/app.py
       :lines: 35-48
-      :emphasize-lines: 3-6,8-9,12-14
+      :emphasize-lines: 4-6,8-9,12-14
 
 
 Validation

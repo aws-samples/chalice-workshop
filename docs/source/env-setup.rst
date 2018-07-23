@@ -274,3 +274,33 @@ Windows
 
 For Windows, you will need to manually download and install a git
 client such as `git-scm <https://git-scm.com/download/win/>`_.
+
+
+Optional requirements
+---------------------
+
+Below is a set of tools that are not required to be installed but would
+facilitate the workshop:
+
+Tree
+~~~~
+
+A command line tool for recursively listing the structure of a directory. First
+check to see if you have ``tree`` installed::
+
+  $ tree --version
+
+
+If it fails to return a version number, you should try to install it. To
+install on OSX, run the following::
+
+  $ brew install tree
+
+For Linux, ``tree`` should be available in your standard package
+manager. Try one of the following commands::
+
+  $ sudo apt-get install tree
+
+::
+
+  $ sudo yum install tree

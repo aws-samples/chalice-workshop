@@ -116,8 +116,7 @@ Instructions
    redeploy the ``media-query`` CloudFormation stack and create a new
    DynamoDB ::
 
-    $ aws cloudformation deploy --template-file resources.json \
-        --stack-name media-query --capabilities CAPABILITY_IAM
+    $ aws cloudformation deploy --template-file resources.json --stack-name media-query
 
 
 Verification

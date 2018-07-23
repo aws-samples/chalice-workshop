@@ -1,6 +1,6 @@
 from chalice import Chalice
 
-app = Chalice(app_name='foo')
+app = Chalice(app_name='media-query')
 
 
 @app.route('/')

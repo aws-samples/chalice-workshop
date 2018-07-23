@@ -11,15 +11,15 @@ app = Chalice(app_name='media-query')
 
 _MEDIA_DB = None
 _REKOGNITION_CLIENT = None
-_SUPPORTED_IMAGE_EXTENSIONS = [
+_SUPPORTED_IMAGE_EXTENSIONS = (
     '.jpg',
     '.png',
-]
-_SUPPORTED_VIDEO_EXTENSIONS = [
+)
+_SUPPORTED_VIDEO_EXTENSIONS = (
     '.mp4',
     '.flv',
     '.mov',
-]
+)
 
 
 def get_media_db():
@@ -94,7 +94,7 @@ def _extract_db_list_params(query_params):
 
 
 def _is_image(key):
-    return any([key.endswith(ext) for ext in _SUPPORTED_IMAGE_EXTENSIONS])
+    return key.endswith(_SUPPORTED_IMAGE_EXTENSIONS)
 
 
 def _handle_created_image(bucket, key):
@@ -103,7 +103,7 @@ def _handle_created_image(bucket, key):
 
 
 def _is_video(key):
-    return any([key.endswith(ext) for ext in _SUPPORTED_VIDEO_EXTENSIONS])
+    return key.endswith(_SUPPORTED_VIDEO_EXTENSIONS)
 
 
 def _handle_created_video(bucket, key):

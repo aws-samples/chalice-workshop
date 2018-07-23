@@ -12,3 +12,4 @@ Media Query Application
    05-s3-delete-event
    06-web-api
    07-videos
+   cleanup
