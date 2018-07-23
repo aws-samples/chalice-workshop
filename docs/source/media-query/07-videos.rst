@@ -434,4 +434,4 @@ that you should have wrote in the ``app.py`` of your Chalice application:
 
 Feel free to add your own media files and/or build additional logic on
 top of this application. For the complete final application, see the
-`GitHub repository <https://github.com/aws-samples/chalice-workshop/tree/events-workshop/code/media-query/final>`__
+`GitHub repository <https://github.com/aws-samples/chalice-workshop/tree/master/code/media-query/final>`__
