@@ -15,14 +15,14 @@ Instructions
 ~~~~~~~~~~~~
 
 The starting code for this step is in
-``code/part2/01-package/cmd``.  You can reuse your existing
+``code/todo-app/part2/01-package-cmd``.  You can reuse your existing
 sample application from part1 of this workshop.  If necessary,
 you can copy over these files as a starting point for this
 section::
 
-    $ cp ../chalice-workshop/code/part2/01-package-cmd/*.py .
-    $ cp ../chalice-workshop/code/part2/01-package-cmd/chalicelib/*.py chalicelib/
-    $ cp ../chalice-workshop/code/part2/01-package-cmd/.chalice/policy-dev.json .chalice/policy-dev.json
+    $ cp ../chalice-workshop/code/todo-app/part2/01-package-cmd/*.py .
+    $ cp ../chalice-workshop/code/todo-app/part2/01-package-cmd/chalicelib/*.py chalicelib/
+    $ cp ../chalice-workshop/code/todo-app/part2/01-package-cmd/.chalice/policy-dev.json .chalice/policy-dev.json
 
 Now we're going to deploy our app using a CloudFormation stack.
 
