@@ -15,7 +15,7 @@ Instructions
 ~~~~~~~~~~~~
 
 The starting code for this step is in
-``code/part2/01-package/cmd``.  You can reuse your existing
+``code/todo-app/part2/01-package-cmd``.  You can reuse your existing
 sample application from part1 of this workshop.  If necessary,
 you can copy over these files as a starting point for this
 section::
