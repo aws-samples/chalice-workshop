@@ -56,7 +56,7 @@ Instructions
 
     $ aws cloudformation describe-stacks \
         --stack-name chalice-pipeline-stack \
-        --query Stacks[0].Outputs
+        --query 'Stacks[0].Outputs'
     [
         ...
         {
@@ -165,7 +165,7 @@ Wait until the stages have completed and all the stages are green.
    the same step we performed in the previous section::
 
     $ aws cloudformation describe-stacks --stack-name mytodoBetaStack \
-        --query Stacks[0].Outputs
+        --query 'Stacks[0].Outputs'
     [
         {
             "OutputKey": "APIHandlerArn",
