@@ -44,7 +44,7 @@ Instructions
 1. Initialize your sample app as a git repository::
 
     $ git init .
-    $ cp ../chalice-workshop/code/part2/02-pipeline/.gitignore .
+    $ cp ../chalice-workshop/code/todo-app/part2/02-pipeline/.gitignore .
 
 2. Commit your existing files::
 
