@@ -116,7 +116,7 @@ class DynamoDBTodo(TodoDB):
     def update_item(self, uid, description=None, state=None,
                     metadata=None, username=DEFAULT_USERNAME):
         # We could also use update_item() with an UpdateExpression.
-        item = self.get_item(uid, username)
+        item = self._table.get_item(uid, username)
         if description is not None:
             item['description'] = description
         if state is not None:
