@@ -585,8 +585,8 @@ Verification
    deploy instead of the localhost endpoint. If you lose your endpoint you can run
    ``chalice url`` which will print out your API Gateway endpoint::
 
-     $ http <your endpoint here>/todos Authorization:http localhost:8000/todos \
-         'Authorization:...auth token that has no todos...'
+     $ http <your endpoint here>/todos \
+         Authorization:...auth token that has no todos...
      HTTP/1.1 200 OK
      Connection: keep-alive
      Content-Length: 2
@@ -602,8 +602,8 @@ Verification
 
   ::
 
-     $ http <your endpoint here>/todos Authorization:http localhost:8000/todos \
-         'Authorization:...auth token that has a todo...'
+     $ http <your endpoint here>/todos \
+         Authorization:...auth token that has a todo...
      HTTP/1.1 200 OK
      Connection: keep-alive
      Content-Length: 132
