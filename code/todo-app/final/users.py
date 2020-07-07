@@ -20,7 +20,7 @@ def get_table_name(stage):
 def create_user(stage):
     table_name = get_table_name(stage)
     table = boto3.resource('dynamodb').Table(table_name)
-    username = raw_input('Username: ').strip()
+    username = input('Username: ').strip()
     password = getpass.getpass('Password: ').strip()
     password_fields = encode_password(password)
     item = {
@@ -54,7 +54,7 @@ def list_users(stage):
 
 
 def test_password(stage):
-    username = raw_input('Username: ').strip()
+    username = input('Username: ').strip()
     password = getpass.getpass('Password: ').strip()
     table_name = get_table_name(stage)
     table = boto3.resource('dynamodb').Table(table_name)

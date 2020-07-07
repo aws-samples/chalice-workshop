@@ -1,2 +1,2 @@
 Sphinx==1.6.4
-chalice==1.6.0
+chalice==1.15.1
