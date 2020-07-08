@@ -35,12 +35,13 @@ Dev Guide
 
 To run the tests::
 
-    $ pip install ../../requirements-test.txt
-    $ PYTHONPATH=. py.test tests/
+    $ pip install ./requirements-dev.txt
+    $ pip install ./requirements.txt
+    $ py.test tests/
 
 To run the integration tests (which will make calls to dynamodb)::
 
-    $ RUN_INTEG_TESTS=yes PYTHONPATH=. py.test tests/test_db.py
+    $ RUN_INTEG_TESTS=yes py.test tests/test_db.py
 
 To run the app with dynamodb, there's a script that creates the table
 and adds it to ``.chalice/config.json``::
@@ -85,3 +86,26 @@ First POST to /login::
 Now use that token as the Authorization header in subsequent requests::
 
     $ http GET localhost:8000/todos 'Authorization: ...some long JWT token...'
+
+
+Deploying
+=========
+
+Once you've created your users and app table you can deploy your app with
+the ``deploy`` command::
+
+    $ chalice deploy
+    Creating deployment package.
+    Updating policy for IAM role: mytodo-dev-api_handler
+    Updating lambda function: mytodo-dev
+    Updating policy for IAM role: mytodo-dev-jwt_auth
+    Updating lambda function: mytodo-dev-jwt_auth
+    Updating rest API
+    Resources deployed:
+      - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:mytodo-dev
+      - Lambda ARN: arn:aws:lambda:us-west-2:12345:function:mytodo-dev-jwt_auth
+      - Rest API URL: https://abcd.execute-api.us-west-2.amazonaws.com/api/
+
+
+You can now use the "Rest API URL" isntead of "localhost:8000" to test your
+app.

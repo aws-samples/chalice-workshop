@@ -37,7 +37,8 @@ def encode_password(password, salt=None):
     if salt is None:
         salt = os.urandom(16)
     rounds = 100000
-    hashed = hashlib.pbkdf2_hmac('sha256', password, salt, rounds)
+    hashed = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'),
+                                 salt, rounds)
     return {
         'hash': 'sha256',
         'salt': salt,

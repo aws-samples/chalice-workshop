@@ -1,8 +1,6 @@
 {
   "stages": {
     "dev": {
-      "environment_variables": {
-      },
       "autogen_policy": false,
       "api_gateway_stage": "api"
     }

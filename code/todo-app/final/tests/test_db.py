@@ -19,12 +19,11 @@ class TestTodoDB(unittest.TestCase):
 
     def test_can_add_and_retrieve_data(self):
         todo_id = self.db.add_item('First item')
-        self.assertDictContainsSubset(
-            {'description': 'First item',
-             'state': 'unstarted',
-             'metadata': {}},
-            self.db.get_item(todo_id),
-        )
+        must_contain = {'description': 'First item',
+                        'state': 'unstarted',
+                        'metadata': {}}
+        full_record = self.db.get_item(todo_id)
+        assert dict(full_record, **must_contain) == full_record
 
     def test_can_add_and_list_data(self):
         todo_id = self.db.add_item('First item')
@@ -46,13 +45,14 @@ class TestTodoDB(unittest.TestCase):
     def test_can_add_and_retrieve_data_with_specified_username(self):
         username = 'myusername'
         todo_id = self.db.add_item('First item', username=username)
-        self.assertDictContainsSubset(
-            {'description': 'First item',
-             'state': 'unstarted',
-             'metadata': {},
-             'username': username},
-            self.db.get_item(todo_id, username=username)
-        )
+        must_contain = {
+            'description': 'First item',
+            'state': 'unstarted',
+            'metadata': {},
+            'username': username
+        }
+        full_record = self.db.get_item(todo_id, username=username)
+        assert dict(full_record, **must_contain) == full_record
 
     def test_can_add_and_list_data_with_specified_username(self):
         username = 'myusername'
@@ -83,8 +83,8 @@ class TestTodoDB(unittest.TestCase):
         self.assertEqual(len(all_todos), 2)
         users = [todo['username'] for todo in all_todos]
         todo_ids = [todo['uid'] for todo in all_todos]
-        self.assertItemsEqual(['user', 'otheruser'], users)
-        self.assertItemsEqual([todo_id, other_todo_id], todo_ids)
+        self.assertCountEqual(['user', 'otheruser'], users)
+        self.assertCountEqual([todo_id, other_todo_id], todo_ids)
 
 
 @unittest.skipUnless(os.environ.get('RUN_INTEG_TESTS', False),
