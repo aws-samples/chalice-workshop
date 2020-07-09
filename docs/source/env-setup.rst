@@ -33,11 +33,6 @@ It is important to note that for this workshop, the version does not
 necessarily need to be ``3.7.3``. The patch version can be any value as long
 as the major and minor version is ``3.7``.
 
-
-If your environment has Python 3.7 installed, skip to the `Setting up
-Virtualenv`_ step.
-
-
 Installing Python will vary base on operating systems.
 
 OS X
