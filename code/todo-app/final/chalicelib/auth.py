@@ -17,7 +17,7 @@ _SECRET = b'\xf7\xb6k\xabP\xce\xc1\xaf\xad\x86\xcf\x84\x02\x80\xa0\xe0'
 def get_jwt_token(username, password, record):
     actual = hashlib.pbkdf2_hmac(
         record['hash'],
-        password,
+        password.encode('utf-8'),
         record['salt'].value,
         record['rounds']
     )
@@ -32,7 +32,7 @@ def get_jwt_token(username, password, record):
             'jti': unique_id,
             # NOTE: We can also add 'exp' if we want tokens to expire.
         }
-        return jwt.encode(payload, _SECRET, algorithm='HS256')
+        return jwt.encode(payload, _SECRET, algorithm='HS256').decode('utf-8')
     raise UnauthorizedError('Invalid password')
 
 

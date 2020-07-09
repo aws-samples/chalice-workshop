@@ -4,7 +4,7 @@ Prerequisite: Setting up your environment
 To start working with AWS Chalice, there are some requirements your
 development environment must have:
 
-* Python 2.7 or 3.6
+* Python 3.7
 * Virtualenv
 * AWS credentials
 * git
@@ -19,25 +19,23 @@ If you have all of the above requirements, you can skip these steps entirely.
 Setting up Python
 -----------------
 
-This workshop requires Python 2.7 or 3.6 for developing and running your
-Chalice application. It is your choice on which version of Python you want to
-use for this workshop. However, Python 3.6 is recommended.
+This workshop requires Python 3.7 for developing and running your
+Chalice application.
 
 First, check to see if Python is already installed on your development
 environment::
 
     $ python --version
-    Python 3.6.5
+    Python 3.7.3
 
 
 It is important to note that for this workshop, the version does not
-necessarily need to be ``3.6.5``. The patch version can be any value as long
-as the major and minor version is ``3.6`` (or ``2.7`` if you elected to use
-Python 2.7 instead).
+necessarily need to be ``3.7.3``. The patch version can be any value as long
+as the major and minor version is ``3.7``.
 
 
-If your environment does have Python 2.7 or 3.6 installed, skip to the
-`Setting up Virtualenv`_ step.
+If your environment has Python 3.7 installed, skip to the `Setting up
+Virtualenv`_ step.
 
 
 Installing Python will vary base on operating systems.
@@ -66,34 +64,12 @@ Once this command completes, check that Python now works on your machine by
 checking the Python version::
 
     $ $(brew --prefix)/bin/python3 --version
-    Python 3.6.5
+    Python 3.7.3
 
 
-If a Python 3.6 version is returned, then you have successfully installed
+If a Python 3.7 version is returned, then you have successfully installed
 the required version of Python for this workshop.
 
-.. note::
-
-   If Python 3.7 was installed instead of Python 3.6, you can force Python 3.6
-   by first removing the symlink::
-
-     $ brew unlink python
-
-   ``git checkout`` to the specific ``python`` formula where Python
-   3.6 was the latest version::
-
-     $ git checkout f2a764e /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/python.rb
-
-
-   Then run ``brew install`` again::
-
-     $ brew install python
-
-
-   And Python 3.6 should now be installed::
-
-     $ $(brew --prefix)/bin/python3 --version
-     Python 3.6.5
 
 Windows
 ~~~~~~~
@@ -107,58 +83,6 @@ Linux
 
 To learn how to install Python on Linux, follow instructions from
 `The Hitchhiker's Guide to Python <https://docs.python-guide.org/starting/install3/linux/#install3-linux>`__
-
-
-Setting up Virtualenv
----------------------
-
-With Python 2.7 or 3.6 installed, it is important that ``virtualenv`` is also
-installed. To see if ``virtualenv`` is already installed, run::
-
-    $ virtualenv --version
-
-
-This command should print out the version of ``virtualenv`` installed. If it
-does print out the version, you have ``virtualenv`` already installed and
-can skip the rest of this step.
-
-
-If it does not, you will need to install ``virtualenv``. To install
-``virtualenv``, first check to see if ``pip`` is installed in your development
-environment::
-
-    $ pip --version
-
-
-If the command returns the ``pip`` version, you have ``pip`` already installed
-in your development environment.
-
-If this fails to run and you installed Python with ``brew``, you still may
-have it installed. Run the following to check::
-
-    $ $(brew --prefix)/bin/pip3 --version
-
-
-If you do not have ``pip`` installed, install ``pip`` by following the
-instruction located in its
-`documentation <https://pip.pypa.io/en/latest/installing/#installation>`__
-
-Using ``pip``, now install ``virtualenv``::
-
-    $ pip install virtualenv
-
-
-Or the following if it was installed with ``brew``::
-
-    $ (brew --prefix)/bin/pip3 install virtualenv
-
-
-After installation completest, running the following command::
-
-    $ virtualenv --version
-
-
-Should now print out the version of ``virtualenv`` that got installed.
 
 
 .. _aws-cli-setup:
@@ -179,7 +103,7 @@ To actually set up AWS credentials on your development environment, use the
 AWS CLI. To check if you have the AWS CLI installed, run::
 
     $ aws --version
-    aws-cli/1.15.60 Python/3.6.5 Darwin/15.6.0 botocore/1.10.59
+    aws-cli/1.15.60 Python/3.7.3 Darwin/15.6.0 botocore/1.10.59
 
 
 If it prints out a version, that means you have the AWS CLI installed on your
@@ -187,12 +111,8 @@ development environment. To get credentials set, it should not matter what
 version of the AWS CLI you are using. The tutorial you choose to follow will
 inform you if you need a specific version of the AWS CLI.
 
-If you do not have the AWS CLI installed, you can install it by following the
-instructions in the `user guide <https://docs.aws.amazon.com/cli/latest/userguide/installing.html>`__. Assuming ``pip`` is installed on your development
-environment, the AWS CLI can be installed by running::
-
-     $ pip install awscli
-
+If you do not have the AWS CLI v2 installed, you can install it by following the
+instructions in the `user guide <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>`__.
 
 With the AWS CLI installed, run ``aws configure`` to configure your
 development environment for AWS credentials via its prompts::
