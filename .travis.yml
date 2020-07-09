@@ -1,0 +1,11 @@
+language: python
+sudo: false
+python:
+  - "3.7"
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-test.txt
+script:
+  - make -C docs linkcheck
+  - make -C docs html
+  - make prcheck
