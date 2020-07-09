@@ -14,17 +14,13 @@ To start using Chalice, you will need a new virtualenv with Chalice installed.
 Instructions
 ~~~~~~~~~~~~
 
+Make sure you have Python 3 installed.  See the :doc:`env-setup` page for
+instructions on how to install Python.
+
 1) Create a new virtualenv called ``chalice-env`` by running the following
    command::
 
-       $ virtualenv chalice-env
-
-
-   If you installed Python with ``brew`` or your default Python interpreter
-   is not Python 2.7, you can use the ``-p`` flag to specify what Python
-   interpreter to use::
-
-       $ virtualenv -p python2 chalice-env
+       $ python3 -m venv chalice-env
 
 
 2) Activate your newly created virtualenv::
@@ -53,11 +49,11 @@ To check that ``chalice`` was installed, run::
 This should print out the version of ``chalice`` that is installed in your
 virtualenv.
 
-Also, ensure that Python 2.7 is being used as the Python interpreter for your
+Also, ensure that Python 3.7 is being used as the Python interpreter for your
 virtualenv::
 
     $ python --version
-    Python 2.7.12
+    Python 3.7.3
 
 
 Create a new Chalice application
