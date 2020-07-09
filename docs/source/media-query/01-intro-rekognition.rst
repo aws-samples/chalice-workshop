@@ -20,18 +20,15 @@ Instructions
     aws-cli/1.15.60 Python/3.6.5 Darwin/15.6.0 botocore/1.10.59
 
    The version of the CLI must be version 1.15.60 or greater.
+   We recommend using AWS CLI v2.
 
 2a. If the CLI is not installed, follow the installation instructions in the
     :ref:`aws-cli-setup` section.
 
 2b. If your current CLI version is older than the minimum required version,
-    follow the upgrade instructions in the
-    `user guide <https://docs.aws.amazon.com/cli/latest/userguide/installing.html>`__
-    to upgrade to the latest version of the AWS CLI. If you installed the AWS
-    CLI with ``pip``, you can run the following command to upgrade to the
-    latest version::
-
-    $ pip install awscli --upgrade
+    follow the upgrade instructions in the `user guide
+    <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>`__ to
+    upgrade to the latest version of the AWS CLI.
 
 
 Verification

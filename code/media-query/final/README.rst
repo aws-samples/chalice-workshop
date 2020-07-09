@@ -40,11 +40,8 @@ Deployment
 ----------
 
 To deploy the application, first install the necessary requirements and
-install the AWS CLI::
-
-  $ pip install -r requirements.txt
-  $ pip install awscli
-
+install the AWS CLI. See :ref:`aws-cli-setup` section for AWS CLI installation
+instructions.
 
 Then use the AWS CLI to deploy a CloudFormation stack containing the S3 bucket,
 DynamoDB table, and SNS topic needed to run this application::
